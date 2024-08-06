@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penthouses</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/styles/Penthouse.css">
+</head>
+<body>
+    
+    <header>
+        <h2 class="logo">
+            Luxury Los Santos
+        </h2>
+
+        <nav class="navigation">
+            <a href="/" method="post" class="lines hideOnMobile">Home</a>
+            <!-- <a href="/cart" method="post" class="lines hideOnMobile">Cart</a> -->
+            
+            <div class="dropdown hideOnMobile">
+                <button class="dropbtn">Category 
+                    <!-- <i class="fa fa-caret-down"></i> -->
+                </button>
+                <div class="dropdown-content">
+                    <a href="/plans" method="post">Plans</a>
+                    <a href="/cars" method="post">Cars</a>
+                    <a href="/penthouses" method="post">Penthouses</a>
+                    <a href="/yatches" method="post">Yachts</a>
+                </div>
+            </div>
+            
+            <% if (userEmail) { %>
+                <a href="/cart" class="lines hideOnMobile">Cart</a>
+                <form action="/logout" method="post" style="display:inline;">
+                    <button type="submit" class="btnLogin-popup dropbtn hideOnMobile">Logout</button>
+                </form>
+                <a href="/profile" class="lines hideOnMobile">Profile</a>
+                <% } else { %>
+                    <button class="btnLogin-popup dropbtn hideOnMobile" onclick="redirectToHome()">Login</button>
+            
+            <% } %>
+            
+        </nav>
+
+            <a href="#" class="last hideOnMobile" onclick=showSidebar()><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 0 448 512" width="26"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></a>
+
+
+            <ul class="sidebar">
+                <li onclick=hideSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 0 384 512" width="26"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg></a></li>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Service</a></li>
+                <li><a href="#">Contact</a></li>
+                <div class="dropdown">
+                    <button class="dropbtn">Category 
+                        <!-- <i class="fa fa-caret-down"></i> -->
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="#">Plans</a>
+                        <a href="#">Cars</a>
+                        <a href="#">Penthouses</a>
+                        <a href="#">Yachts</a>
+                    </div>
+                </div>
+                <button class="btnLogin-popup">Login</button>
+            </ul>            
+
+        </nav>
+        
+    </header>
+
+    <script>
+        function redirectToHome() {
+            window.location.href = '/';
+        }
+    </script>
+
+
+    <section class="first-photo">
+        <div class="text">
+            <p class="heading">New Penthouses</p>
+            <p class="sub-heading">Explore Luxury Of LosSantos</p>
+            <!-- <button class="explore">
+                Explore
+            </button> -->
+        </div>
+        <div class="black">
+
+        </div>
+    </section>
+
+    <section class="section2">
+        <h1>What Are You Looking For?</h1>
+        <div class="options">
+            <button class="option buy" onclick="checkLogin('/buy/penthouse')">Buy</button>
+            <button class="option rent" onclick="checkLogin('/sell/penthouse')">SELL</button>
+        </div>
+    </section>
+
+    <script>
+        function checkLogin(url) {
+            fetch('/check-login')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.loggedIn) {
+                        window.location.href = url;
+                    } else {
+                        alert('You need to log in first.');
+                        window.location.href = '/';
+                    }
+                });
+        }
+    </script>
+
+    <section class="properties">
+        <h2>New Properties</h2>
+        <h3>For Sale</h3>
+        <div class="property-list">
+            <div class="property">
+                
+                    <div class="btnpic penthouse1">
+                        <!-- <div class="status">
+                            <p>BUY</p>
+                        </div>
+                            <a href="/penthouse/penthouse1" method="post" class="clickbtn">
+                            </a> -->
+                    </div>
+
+                <div class="property-details">
+                    <!-- <span class="status get">BUY</span> -->
+                    
+                </div>
+            </div>
+            <div class="property">
+                <div class="btnpic penthouse2">
+                    <!-- <div class="status">
+                        <p>BUY</p>
+                    </div>
+                        <a href="/penthouse/penthouse1" method="post" class="clickbtn">
+                        </a> -->
+                </div>
+                <div class="property-details">
+                    <!-- <span class="status buy">BUY</span> -->
+                    
+                </div>
+            </div>
+            <div class="property">
+                <div class="btnpic penthouse3">
+                    <!-- <div class="status">
+                        <p>BUY</p>
+                    </div>
+                        <a href="/penthouse/penthouse1" method="post" class="clickbtn">
+                        </a> -->
+                </div>
+                <div class="property-details">
+                    
+                </div>
+            </div>
+            <div class="property">
+                <div class="btnpic penthouse4">
+                    <!-- <div class="status">
+                        <p>BUY</p>
+                    </div>
+                        <a href="/penthouse/penthouse1" method="post" class="clickbtn">
+                        </a> -->
+                </div>
+                <div class="property-details">
+                    
+                </div>
+            </div>
+
+            <div class="property">
+                <div class="btnpic penthouse4">
+                    <!-- <div class="status">
+                        <p>BUY</p>
+                    </div>
+                        <a href="/penthouse/penthouse1" method="post" class="clickbtn">
+                        </a> -->
+                </div>
+                <div class="property-details">
+                    
+                </div>
+            </div>
+
+            <div class="property">
+                <div class="btnpic penthouse4">
+                    <!-- <div class="status">
+                        <p>BUY</p>
+                    </div>
+                        <a href="/penthouse/penthouse1" method="post" class="clickbtn">
+                        </a> -->
+                </div>
+                <div class="property-details">
+                    
+                </div>
+            </div>
+
+            <div class="property">
+                <div class="btnpic penthouse4">
+                    <!-- <div class="status">
+                        <p>BUY</p>
+                    </div>
+                        <a href="/penthouse/penthouse1" method="post" class="clickbtn">
+                        </a> -->
+                </div>
+                <div class="property-details">
+                    
+                </div>
+            </div>
+
+            <div class="property">
+                <div class="btnpic penthouse4">
+                    <!-- <div class="status">
+                        <p>BUY</p>
+                    </div>
+                        <a href="/penthouse/penthouse1" method="post" class="clickbtn">
+                        </a> -->
+                </div>
+                <div class="property-details">
+                    
+                </div>
+            </div>
+
+        <!-- <button class="view1">
+            <a href="/buy/penthouse" method="post">View More</a>
+        </button> -->
+
+        <p class="details-paragraph">In the vibrant city of Los Santos, the luxury car market thrives, offering an impressive selection of high-end vehicles that combine elegance, performance, and advanced technology. From sleek sedans to powerful supercars, brands like Ferrari, Lamborghini, and Aston Martin dominate the streets. In Los Santos, owning a luxury car is not just a mode of transportation but a statement of status and sophistication.</p>        
+
+        <div class="linespace1"></div>
+    </section>
+
+    
+    <section class="contact-section">
+        <div class="contact-info">
+            <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <h3>Call Us</h3>
+                <p>Free Calls</p>
+                <p>1-800-700-900</p>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <h3>Find Us</h3>
+                <p>Ahmedabad University</p>
+                <p>Ahmedabad, India</p>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <h3>Email Us</h3>
+                <p>Direct Email</p>
+                <p>mysantos@gmail.com</p>
+            </div>
+        </div>
+    </section>
+
+
+
+    <script>
+        const wrapper = document.querySelector('.wrapper');
+const loginLink = document.querySelector('.login-link');
+const registerLink = document.querySelector('.register-link');
+const btnPopup = document.querySelector('.btnLogin-popup');
+const iconClose = document.querySelector('.icon-close');
+
+registerLink.addEventListener('click', () => {
+    wrapper.classList.add('active');
+});
+
+loginLink.addEventListener('click', () => {
+    wrapper.classList.remove('active');
+});
+
+btnPopup.addEventListener('click', () => {
+    wrapper.classList.add('active-popup');
+    // getloginpart.classList.remove('active-popup');
+    // firlogin.classList.remove('active-popup');
+});
+
+iconClose.addEventListener('click', () => {
+    wrapper.classList.remove('active-popup');
+    // getloginpart.classList.add('active-popup');
+    // firlogin.classList.add('active-popup');
+});
+    </script>
+</body>
+</html>

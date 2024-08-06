@@ -1,0 +1,763 @@
+/* Basic reset */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    
+    box-sizing: border-box;
+}
+
+.fix-back-img{
+    background: url('Assets/background_1.jpg');
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: -20;
+}
+
+.sec-login{
+    /* position: fixed; */
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 100px;
+    background: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 99;
+    /* backdrop-filter: blur(10px); */
+    position: fixed;
+    backdrop-filter: blur(10px);
+
+
+}
+
+    .logo{
+        font-size: 2em;
+        font-family: "Poppins", sans-serif;
+        color: white;
+    }
+
+    .navigation {
+        display: flex;
+        align-items: center;
+    }
+
+    .last{
+        padding-top: 8px;
+        color: white;
+    }
+
+    .navigation a{
+        position: relative;
+        font-size: 1.1em;
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        margin-left: 20px;
+    }
+
+    .navigation .last{
+        /* margin-top: 10px; */
+        /* padding-top: 10px; */
+        /* margin-right: -15px;
+        font-size: 1.1em;
+        position: relative; */
+    }
+
+    .navigation .lines::after{
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -6px;
+        width: 100%;
+        height: 3px;
+        background: white;
+        border-radius: 5px;
+        transform-origin: right;
+        transform: scaleX(0);
+        transition: transform .5s;
+    }
+
+    .navigation .lines:hover::after{
+        transform-origin: left;
+        transform: scaleX(1);
+    }
+
+    .navigation .btnLogin-popup{
+        width: 130px;
+        height: 50px;
+        background: transparent;
+        border: 2px solid white;
+        outline: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 1.1em;
+        color: white;
+        font-weight: 500;
+        margin-left: 10px;
+        transition: 0.5s;
+    }
+
+    .navigation .btnLogin-popup:hover{
+        background-color: white;
+        color: black;
+    }
+
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+    
+    .dropbtn {
+        font-size: 1.1em;
+        color: white;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        margin-left: 10px;
+        font-weight: 500;
+    }
+    
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background: transparent;
+        border: 2px solid white;
+        border-radius: 20px;
+        min-width: 160px;
+        margin-left: -5px;
+        margin-top: 2px;
+        background-color: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+        /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
+        /* z-index: 1; */
+    }
+    
+    .dropdown-content a {
+        color: white;
+        /* padding: 12px 16px; */
+        padding-top: 10px;
+        text-decoration: none;
+        display: flex;
+        justify-content: center;
+        padding-right: 20px;
+        /* align-items: center; */
+        /* text-align: center; */
+    }
+    
+    .dropdown .dropbtn{
+        width: 130px;
+        height: 50px;
+        background: transparent;
+        border: 2px solid white;
+        outline: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 1.1em;
+        color: white;
+        font-weight: 500;
+        /* margin-left: 40px; */
+        transition: 0.5s;
+    }
+    
+    .dropdown .dropbtn:hover{
+        background-color: white;
+        color: black;
+    }
+    
+    .dropdown-content a:last-child{
+        padding-bottom: 10px;
+    }
+    
+    .dropdown-content a:hover {
+        background: transparent;
+        transform: none;
+        transition: none;
+    }
+    
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+    
+    
+    
+    /* .dropdown:hover .dropbtn {
+        background :transparent;
+    } */
+    
+    .sidebar{
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        width: 250px;
+        z-index: 999;
+        background-color: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+        box-shadow: -10px 0 10px rgba(0, 0, 0, 0.1);
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        /* color: black; */
+        justify-content: flex-start;
+    }
+    
+    .sidebar li{
+        width: 100%;
+        list-style-type: none;
+        padding: 5px;
+    }
+    
+    .sidebar a{
+        width: 100%;
+    }
+    
+    .last{
+        display: none;
+    }
+    
+    @media(max-width: 800px){
+        .hideOnMobile{
+            display: none;
+        }
+        .last{
+            display: block;
+        }
+    }
+    
+    @media(max-width: 400px){
+        .sidebar{
+            width: 100%;
+        }
+    }
+
+
+/* ===== */
+
+/* Body styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color:#e67e22;
+    color: #333;
+}
+
+/* Header styling */
+section.sec-nav {
+    /* margin-top: 10px; */
+    /* position: fixed; */
+    width: 100%;
+    /* margin-top: 50px; */
+    background: transparent;
+    color: white;
+    font-size: 1rem;
+    padding: 20px 100px;
+    padding-top: 90px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* box-shadow: 0 0 8px rgba(0, 0, 0, 0.1); */
+    backdrop-filter: blur(10px);
+    position: fixed;
+    z-index: 2;
+}
+
+section.sec-nav h1 {
+    font-size: 2rem;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+}
+
+.profile span {
+    margin-right: 20px;
+    font-size: 1.2rem;
+}
+
+.logout-btn {
+    padding: 10px 15px;
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 1rem;
+}
+
+.logout-btn:hover {
+    background-color: white;
+    color: black;
+}
+
+/* Main content styling */
+main {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 20px auto;
+}
+
+section.hero{
+    /* width: 100%; */
+    /* height: 100vh; */
+    background: transparent;
+    font-family: "Poppins", sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 130px;
+}
+
+.card{
+    width: 400px;
+    background: transparent;
+    padding: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* padding: 40px; */
+    text-align: center;
+    margin-top: 30px;
+    color: #333;
+    /* margin-right: 10px; */
+}
+
+.card h1{
+    /* font-weight: 1000; */
+    color: white;
+    padding-bottom: 10px;
+}
+
+.card p{
+    color: white;
+}
+
+.roundimg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+.card .roundimg{
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    margin-top: 40px;
+    margin-bottom: 30px;
+    background-image: url('Assets/profile_placeholder.webp');
+    background-size: cover;
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
+
+}
+
+.card img{
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    /* margin-top: 40px; */
+    /* margin-bottom: 30px; */
+    background-size: cover;
+}
+
+
+.name-price{
+    display: flex;
+    /* justify-content: flex-start; */
+    flex-direction: column;
+    /* align-items: center; */
+    text-align: left;
+}
+
+.name-price span{
+    font-size: 30px;
+}
+
+.name-price p{
+    font-size: 18px;
+}
+
+.item p{
+    font-size: 25px;
+}
+
+
+
+label{
+    display: block;
+    width: 200px;
+    /* background: transparent; */
+    background-image: linear-gradient(135deg, rgb(228, 164, 228), pink, rgb(228, 164, 228));
+    border: 2px solid white;
+    color: #fff;
+    padding: 12px;
+    margin: 10px auto;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.5s;
+    transition: color 0.3s;
+}
+
+label:hover{
+    background: white;
+    color: #000;
+}
+
+input.photo-profile{
+    display: none;
+}
+
+/* Section styling */
+/* .sec-nav {
+    margin-bottom: 30px;
+    margin-top: 100px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+} */
+
+.currency-management{
+    margin-bottom: 30px;
+    /* margin-top: 50px; */
+    padding: 20px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.currency-management h2{
+    font-size: 1.45rem;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    font-weight: 1000;
+    color: white;
+}
+
+
+
+.currency-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding-top: 30px;
+}
+
+.currency-management .balance{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding-top: 30px;  
+}
+
+.uploadimg{
+    color: #e0e0e0;
+    width: 50%;
+}
+
+.abc{
+    height: 50px;
+    width: 90px;
+    color: white;
+    background: transparent;
+    border: none;
+    border: 2px solid white;
+    border-radius: 5px;   
+    font-size: 15px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+.hideninput{
+    display: none;
+}
+
+.abc:hover{
+    background-color: white;
+    color: #000;
+}
+
+.balance p{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 50px;
+    background-image: linear-gradient(135deg, rgb(228, 164, 228), pink, rgb(228, 164, 228));
+    color: white;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 600;
+    border: 2px solid #e0e0e0;
+    padding: 10px 20px;
+}
+
+#addMoneyForm{
+    z-index: 1000;
+}
+
+.addmoney-text{
+    width: auto;
+    height: 50px;
+    border: none;
+    border: 2px solid white;
+    background-color: white;
+    color: #000;
+    border-radius: 5px;
+    outline: none;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.withdrawmoney-text{
+    width: auto;
+    height: 50px;
+    border: none;
+    border: 2px solid white;
+    background-color: white;
+    color: #000;
+    border-radius: 5px;
+    outline: none;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.currency-btn {
+    padding: 10px 20px;
+    width: 180px;
+    height: 50px;
+    background-image: linear-gradient(135deg, rgb(228, 164, 228), pink, rgb(228, 164, 228));
+    color: white;
+    /* border: none; */
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    transition: color 0.3s;
+    font-size: 1rem;
+    font-weight: 600;
+    border: 2px solid #e0e0e0;
+}
+
+.currency-btn:hover {
+    background: transparent;
+    color: black;
+}
+
+.store{
+    margin-bottom: 30px;
+    padding: 20px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.store h2{
+    font-size: 1.25rem;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    color: white;
+}
+
+.items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    margin-bottom: 10px;
+    background-image: linear-gradient(135deg, rgb(228, 164, 228), pink, rgb(228, 164, 228));
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    transition: transform 0.3s;
+    color: white;
+}
+
+.item:hover {
+    transform: scale(1.02);
+}
+
+.item-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.buy-btn, .cart-btn {
+    padding: 10px 20px;
+    color: white;
+    font-size: 1rem;
+    /* border: none; */
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.5s;
+    transition: color 0.3s;
+    border: 2px solid white;
+}
+
+.buy-btn {
+    background: transparent;
+}
+
+.buy-btn:hover {
+    background-color: white;
+    color: black;
+}
+
+.cart-btn {
+    background: transparent;
+}
+
+.cart-btn:hover {
+    background-color: white;
+    color: black;
+}
+
+.cart{
+    margin-bottom: 30px;
+    padding: 20px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.purchase-history{
+    margin-bottom: 30px;
+    padding: 20px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Currency management styling */
+.cart h2, .purchase-history h2 {
+    font-size: 1.25rem;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 1rem;
+}
+
+/* Store styling */
+
+
+/* Side sections container */
+.side-sections {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+/* Cart styling */
+.cart, .purchase-history {
+    flex: 1;
+    min-width: 45%;
+}
+
+.cart ul, .purchase-history ul {
+    list-style-type: none;
+}
+
+.cart li, .purchase-history li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    /* background-color: #f9f9f9; */
+    background-image: linear-gradient(135deg, rgb(228, 164, 228), pink, rgb(228, 164, 228));
+    margin-bottom: 5px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    transition: background-color 0.3s;
+}
+
+.cart li:hover, .purchase-history li:hover {
+    background-image: linear-gradient(135deg, purple, pink, purple);
+}
+
+.remove-btn {
+    padding: 5px 10px;
+    background: transparent;
+    color: white;
+    /* border: none; */
+    border: 2px solid white;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    transition: color 0.3s;
+}
+
+.remove-btn:hover {
+    background-color: white;
+    color: black;
+}
+
+.contact-section {
+    text-align: center;
+    padding: 50px;
+    background-image: linear-gradient(135deg, rgb(228, 164, 228), pink, rgb(228, 164, 228));
+    margin-top: 60px;
+    margin-bottom: 40px;
+}
+
+.contact-section h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 40px;
+}
+
+.contact-info {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 100px;
+}
+
+.contact-item {
+    text-align: center;
+    max-width: 200px;
+}
+
+.contact-item i {
+    font-size: 60px;
+    color: #e74c3c;
+    margin-bottom: 20px;
+}
+
+.contact-item h3 {
+    font-size: 30px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.contact-item p {
+    font-size: 16px;
+    color: #666;
+    /* margin: 5px 0; */
+}

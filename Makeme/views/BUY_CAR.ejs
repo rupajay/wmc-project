@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/styles/BUY_CAR.css">
+</head>
+<body>
+
+    <section class="fix-back-img">
+        
+    </section>
+    
+    <header>
+        <h2 class="logo">
+            Luxury Los Santos
+        </h2>
+
+        <nav class="navigation">
+            <a href="/" method="post" class="lines hideOnMobile">Home</a>
+            <!-- <a href="/cart" method="post" class="lines hideOnMobile">Cart</a> -->
+            
+            <div class="dropdown hideOnMobile">
+                <button class="dropbtn">Category 
+                    <!-- <i class="fa fa-caret-down"></i> -->
+                </button>
+                <div class="dropdown-content">
+                    <a href="/plans" method="post">Plans</a>
+                    <a href="/cars" method="post">Cars</a>
+                    <a href="/penthouses" method="post">Penthouses</a>
+                    <a href="/yatches" method="post">Yachts</a>
+                </div>
+            </div>
+            <!-- <button class="btnLogin-popup hideOnMobile">Login</button> -->
+            <!-- <a href="/profile" method="post" class="lines hideOnMobile">Profile</a> -->
+
+          
+              <a href="/cart" class="lines hideOnMobile">Cart</a>
+              <form action="/logout" method="post" style="display:inline;">
+                  <button type="submit" class="btnLogin-popup dropbtn hideOnMobile">Logout</button>
+              </form>
+              <a href="/profile" class="lines hideOnMobile">Profile</a>
+          
+              <!-- <button class="btnLogin-popup dropbtn hideOnMobile">Login</button> -->
+          
+          
+      </nav>
+
+            <a href="#" class="last hideOnMobile" onclick=showSidebar()><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 0 448 512" width="26"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></a>
+
+
+            <ul class="sidebar">
+                <li onclick=hideSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 0 384 512" width="26"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg></a></li>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Service</a></li>
+                <li><a href="#">Contact</a></li>
+                <div class="dropdown">
+                    <button class="dropbtn">Category 
+                        <!-- <i class="fa fa-caret-down"></i> -->
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="#">Plans</a>
+                        <a href="#">Cars</a>
+                        <a href="#">Penthouses</a>
+                        <a href="#">Yachts</a>
+                    </div>
+                </div>
+                <button class="btnLogin-popup">Login</button>
+            </ul>            
+
+        </nav>
+        
+    </header>
+
+    <script>
+      function checkLogin(url) {
+          fetch('/check-login')
+              .then(response => response.json())
+              .then(data => {
+                  if (data.loggedIn) {
+                      window.location.href = url;
+                  } else {
+                      alert('You need to log in first.');
+                      window.location.href = '/';
+                  }
+              });
+      }
+  </script>
+
+    <section class="sec-nav">
+      <div class="profile">
+        <form id="filterForm" action="/buy/car" method="get">
+
+          <div class="price-fil">
+            <label for="price">Price:</label>
+            <select id="price" name="price">
+              <option id="price1" value="">Select</option>
+              <option id="price2" value="0-20000">0 - 20,000</option>
+              <option id="price3" value="20001-40000">20,001 - 40,000</option>
+              <option id="price4" value="40001-60000">40,001 - 60,000</option>
+              <option id="price5" value="60001-80000">60,001 - 80,000</option>
+              <option id="price6" value="80001-100000">80,001 - 100,000</option>
+              <option id="price7" value="100001-300000">100,001 - 300,000</option>
+            </select>
+          </div>
+
+          <div class="fuel-fil">
+            <label for="fuel">Fuel:</label>
+            <select id="fuel" name="fuel">
+              <option id="fuel1" value="">Select</option>
+              <option id="fuel2" value="petrol">Petrol</option>
+              <option id="fuel3" value="diesel">Diesel</option>
+              <option id="fuel4" value="electric">Electric</option>
+              <option id="fuel5" value="hybrid">Hybrid</option>
+            </select>
+          </div>
+          <div class="year-fil">
+            <label for="year">Year:</label>
+            <select id="year" name="year">
+              <option id="year1" value="">Select</option>
+              <option id="year2" value="2018">2018</option>
+              <option id="year3" value="2019">2019</option>
+              <option id="year4" value="2020">2020</option>
+              <option id="year5" value="2021">2021</option>
+              <option id="year6" value="2022">2022</option>
+              <option id="year7" value="2023">2023</option>
+            </select>
+          </div>
+          <div class="transmission-fil">
+            <label for="transmission">Transmission:</label>
+            <select id="transmission" name="transmission">
+              <option id="transmission1" value="">Select</option>
+              <option id="transmission2" value="automatic">Automatic</option>
+              <option id="transmission3" value="manual">Manual</option>
+            </select>
+          </div>
+          <button type="submit" id="filterButton">Filter</button>
+        </form>
+      </div>
+    </section>
+
+
+
+    <section class="properties properties1">
+        <div class="property-list">
+          <% cars.forEach((car) => { %>
+            <div class="property">
+              <div class="btnpic car1">
+                <div class="status">
+                  <p>BUY</p>
+                </div>
+                <a href="/car/<%= car.id %>" method="post" class="clickbtn">
+                  <img class="car1" src="<%= car.image %>" alt="">
+                </a>
+              </div>
+              <div class="property-details">
+                <h4><%= car.model %></h4>
+                <p><%= car.fuel %></p>
+                <p class="moneycolor">$<%= car.price.toLocaleString() %></p>
+                <div class="linespace"></div>
+                <div class="details">
+                  <div class="bed">
+                    <p class="icon"><i class="fa-solid fa-bolt"></i></p>
+                    <p>HP:</p>
+                    <p class="count"><%= car.power %></p>
+                  </div>
+                  <div class="baths">
+                    <p class="icon"><i class="fa-solid fa-gauge-high"></i></p>
+                    <p>Speed:</p>
+                    <p class="count"><%= car.speed %></p>
+                  </div>
+                  <div class="levels">
+                    <p class="icon"><i class="fa-solid fa-leaf"></i></p>
+                    <p>Mileage:</p>
+                    <p class="count"><%= car.milage %></p>
+                  </div>
+                  <div class="sqft">
+                    <p class="icon"><i class="fa-regular fa-clock"></i></p>
+                    <p>Year:</p>
+                    <p class="count"><%= car.year %></p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="viewmore">
+                <a href="/car/<%= car.id %>" method="post" class="clickbtn viewbtn">View More</a>
+              </div>
+
+            </div>
+            
+          <% }) %>
+          
+        </div>
+
+      </section>
+
+
+<section class="contact-section">
+    <div class="contact-info">
+        <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <h3>Call Us</h3>
+            <p>Free Calls</p>
+            <p>1-800-700-900</p>
+        </div>
+        <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <h3>Find Us</h3>
+            <p>Ahmedabad University</p>
+            <p>Ahmedabad, India</p>
+        </div>
+        <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <h3>Email Us</h3>
+            <p>Direct Email</p>
+            <p>mysantos@gmail.com</p>
+        </div>
+    </div>
+</section>
+
+<script>
+  document.getElementById('filterForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the form from submitting the traditional way
+  
+    const price = document.getElementById('price').value;
+    const fuel = document.getElementById('fuel').value;
+    const year = document.getElementById('year').value;
+    const transmission = document.getElementById('transmission').value;
+  
+    let query = '/buy/car?';
+    if (price) query += `price=${price}&`;
+    if (fuel) query += `fuel=${fuel}&`;
+    if (year) query += `year=${year}&`;
+    if (transmission) query += `transmission=${transmission}&`;
+  
+    window.location.href = query.slice(0, -1); // Redirect to the URL with query parameters
+  });
+
+  </script>
+  
+
+</body>
+</html>

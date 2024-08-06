@@ -1,0 +1,576 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+/* body{
+    background-image: linear-gradient(135deg, red, yellow);
+} */
+#filterForm{
+    display: flex;
+    /* flex-direction: row; */
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.fix-back-img{
+    background: url('Assets/background_1.jpg');
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: -20;
+}
+
+header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 100px;
+    background: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 99;
+    /* backdrop-filter: blur(10px); */
+}
+
+.logo{
+    font-size: 2em;
+    color: white;
+}
+
+.navigation {
+    display: flex;
+    align-items: center;
+}
+
+.last{
+    padding-top: 8px;
+    color: white;
+}
+
+.navigation a{
+    position: relative;
+    font-size: 1.1em;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 20px;
+}
+
+/* .navigation .last{ */
+    /* margin-top: 10px; */
+    /* padding-top: 10px; */
+    /* margin-right: -15px;
+    font-size: 1.1em;
+    position: relative; */
+/* } */
+
+.navigation .lines::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 3px;
+    background: white;
+    border-radius: 5px;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform .5s;
+}
+
+.navigation .lines:hover::after{
+    transform-origin: left;
+    transform: scaleX(1);
+}
+
+.navigation .btnLogin-popup{
+    width: 130px;
+    height: 50px;
+    background: transparent;
+    border: 2px solid white;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    color: white;
+    font-weight: 500;
+    margin-left: 10px;
+    transition: 0.5s;
+}
+
+.navigation .btnLogin-popup:hover{
+    background-color: white;
+    color: black;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    font-size: 1.1em;
+    color: white;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+    font-weight: 500;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: transparent;
+    border: 2px solid white;
+    border-radius: 20px;
+    min-width: 160px;
+    margin-left: -5px;
+    margin-top: 2px;
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
+    /* z-index: 1; */
+}
+
+.dropdown-content a {
+    color: white;
+    /* padding: 12px 16px; */
+    padding-top: 10px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    padding-right: 20px;
+    /* align-items: center; */
+    /* text-align: center; */
+}
+
+.dropdown .dropbtn{
+    width: 130px;
+    height: 50px;
+    background: transparent;
+    border: 2px solid white;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    color: white;
+    font-weight: 500;
+    /* margin-left: 40px; */
+    transition: 0.5s;
+}
+
+.dropdown .dropbtn:hover{
+    background-color: white;
+    color: black;
+}
+
+.dropdown-content a:last-child{
+    padding-bottom: 10px;
+}
+
+.dropdown-content a:hover {
+    background: transparent;
+    transform: none;
+    transition: none;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.sidebar{
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 250px;
+    z-index: 999;
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    box-shadow: -10px 0 10px rgba(0, 0, 0, 0.1);
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    /* color: black; */
+    justify-content: flex-start;
+}
+
+.sidebar li{
+    width: 100%;
+    list-style-type: none;
+    padding: 5px;
+}
+
+.sidebar a{
+    width: 100%;
+}
+
+.last{
+    display: none;
+}
+
+@media(max-width: 800px){
+    .hideOnMobile{
+        display: none;
+    }
+    .last{
+        display: block;
+    }
+}
+
+@media(max-width: 400px){
+    .sidebar{
+        width: 100%;
+    }
+}
+
+section.sec-nav {
+    /* margin-top: 10px; */
+    /* position: fixed; */
+    width: 100%;
+    /* margin-top: 50px; */
+    background: transparent;
+    color: white;
+    font-size: 1rem;
+    padding: 90px 100px;
+    padding-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    /* box-shadow: 0 0 8px rgba(0, 0, 0, 0.1); */
+    z-index: 2;
+    backdrop-filter: blur(10px);
+
+}
+
+section.sec-nav h1 {
+    font-size: 2rem;
+}
+
+.profile{
+    width: 100%;
+}
+
+.profile{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.profile label{
+    font-size: 1.1rem;
+    padding-right: 5px;
+}
+
+select{
+    background: transparent;
+    background-color: none;
+    outline: none;
+    border: none;
+    border: 2px solid white;
+    border-radius: 5px;
+    color: white;
+    font-size: 1.1rem;
+    padding: 10px;
+}
+
+select option{
+    background: none;
+    backdrop-filter: blur(10px);
+    color: #333;
+}
+
+#filterButton{
+    padding: 10px;
+    background: transparent;
+    color: white;
+    outline: none;
+    border: none;
+    border: 2px solid white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    width: 100px;
+    font-weight: 500;
+}
+
+#filterButton:hover{
+    background-color: white;
+    color: black;
+}
+
+section.properties1 {
+    padding: 130px;
+    padding-top: 150px;
+    text-align: center;
+    padding-bottom: 0px;
+}
+
+.properties{
+    padding: 130px;
+    padding-top: 40px;
+    text-align: center;
+    padding-bottom: 0px;
+    z-index: -99;
+}
+
+.properties h2 {
+    font-size: 20px;
+    color: #888;
+    margin: 0;
+}
+
+.properties h3 {
+    font-size: 28px;
+    color: #333;
+    margin: 20px 0;
+}
+
+.property-list {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.property {
+    background-color: #fff;
+    width: 348px;
+    height: 550px;
+    margin: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.viewmore{
+    /* border: 2px solid black; */
+    height: 40px;
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    border-radius: 10px;
+    background-color: #a7a7a7;
+    margin-top: 20px;
+}
+
+.viewbtn{
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+}
+
+.property .penthouse1 {
+    /* background-image: url('Assets/penthouses/EclipseTowersNight-GTAV.webp'); */
+    position: relative;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 208px; 
+    /* position: relative;    */
+    display: flex;
+    align-items: end;
+    object-fit: cover;
+}
+
+.property .penthouse2 {
+    background-image: url('Assets/penthouses/WeazelPlaza-GTA5.webp');
+    position: relative;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 208px; 
+    /* position: relative;    */
+    display: flex;
+    align-items: end;
+}
+
+.property .penthouse3 {
+    background-image: url('Assets/penthouses/RichardsMajestic-GTAV.webp');
+    position: relative;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 208px; 
+    /* position: relative;    */
+    display: flex;
+    align-items: end;
+}
+
+.property .penthouse4 {
+    background-image: url('Assets/penthouses/3AltaStreet-GTAV.webp');
+    position: relative;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 208px; 
+    /* position: relative;    */
+    display: flex;
+    align-items: end;
+}
+
+.btnpic .clickbtn{
+    height: 100%;
+    width: 100%;
+    background: transparent;
+    cursor: pointer;
+    outline: none;
+    border: none;
+}
+
+/* .pressbtn .clickbtn{
+    background: transparent;
+    width: 100%;
+    height: 100%;
+} */
+
+/* .btnpic .status{
+    position: absolute;
+    display: flex;
+    justify-content: start;
+    align-items: end;
+    flex-direction: column-reverse;
+    text-align: left;
+} */
+
+.property-details {
+    padding: 20px;
+}
+
+.btnpic .status {
+    /* position: absolute; */
+    /* display: flex; */
+    /* flex-direction: column-reverse; */
+    /* justify-content: flex-end; */
+    font-size: 16px;
+    color: #fff;
+    background-color: red;
+    font-weight: 500;
+    /* padding: 5px; */
+    width: 70px;
+    height: 30px;
+    /* margin-top: -28px; */
+}
+
+.status{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    z-index: 1000;
+}
+
+.property-details h4 {
+    font-size: 20px;
+    margin: 0 0 10px;
+    text-align: left;
+}
+
+.property-details p {
+    margin: 0 0 10px;
+    color: #666;
+    text-align: left;
+}
+
+.property-details .moneycolor{
+    color: black;
+    font-size: large;
+    font-weight: 600;
+}
+
+.property-details .linespace{
+    height: 0.5px;
+    width: 100%;
+    background-color: #888;
+    margin-bottom: 10px;
+}
+
+.details {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: #888;
+}
+
+/* .details .bed{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.details .baths{
+    display: flex;
+    justify-content: left;
+    flex-direction: column;
+} */
+
+.icon{
+    font-size: 25px;
+}
+
+.details .count{
+    font-size: 20px;
+    font-weight: 700;
+    color: black;
+}
+
+.contact-section {
+    text-align: center;
+    padding: 50px;
+    background-image: linear-gradient(135deg, rgb(228, 164, 228), pink, rgb(228, 164, 228));
+    margin-top: 60px;
+    margin-bottom: 40px;
+}
+
+.contact-section h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 40px;
+}
+
+.contact-info {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 100px;
+}
+
+.contact-item {
+    text-align: center;
+    max-width: 200px;
+}
+
+.contact-item i {
+    font-size: 60px;
+    color: #e74c3c;
+    margin-bottom: 20px;
+}
+
+.contact-item h3 {
+    font-size: 30px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.contact-item p {
+    font-size: 16px;
+    color: #666;
+    /* margin: 5px 0; */
+}

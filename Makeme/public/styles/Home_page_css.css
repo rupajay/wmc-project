@@ -1,0 +1,435 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* @font-face{
+    font-family: myfont;
+    src: url('Assets/pricedown.ttf');
+} */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 100px;
+    background: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 99;
+}
+
+.logo{
+    font-size: 2em;
+    color: white;
+    /* font-family: myfont; */
+}
+
+.navigation {
+    display: flex;
+    align-items: center;
+}
+
+.last{
+    padding-top: 8px;
+    color: white;
+}
+
+.navigation a{
+    position: relative;
+    font-size: 1.1em;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 20px;
+}
+
+.navigation .last{
+    /* margin-top: 10px; */
+    /* padding-top: 10px; */
+    /* margin-right: -15px;
+    font-size: 1.1em;
+    position: relative; */
+}
+
+.navigation .lines::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 3px;
+    background: white;
+    border-radius: 5px;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform .5s;
+}
+
+.navigation .lines:hover::after{
+    transform-origin: left;
+    transform: scaleX(1);
+}
+
+.navigation .btnLogin-popup{
+    width: 130px;
+    height: 50px;
+    background: transparent;
+    border: 2px solid white;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    color: white;
+    font-weight: 500;
+    margin-left: 10px;
+    transition: 0.5s;
+}
+
+.navigation .btnLogin-popup:hover{
+    background-color: white;
+    color: black;
+}
+
+/* body{
+    background: url('Assets/background_1.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: auto;
+} */
+
+.fix-back-img{
+    background: url('Assets/background_1.jpg');
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: -1;
+}
+
+.sec2 {
+    font-family: Arial, sans-serif;
+    /* background-image: url("Assets/background_1.jpg"); */
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0;
+}
+
+.cards-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    transform: scale(0);
+    transition:transform 0.5s ease, height 0.2s ease;
+    /* margin: 20px 0; */
+}
+
+.cards-container.active-popup{
+    transform: scale(1);
+}
+
+.cards-container1{
+    margin: 110px 0;
+}
+
+.cards-container2{
+    margin-top: -90px;
+}
+
+.cards-container2.active-popup{
+    transform: scale(1);
+}
+
+.card {
+    margin-top: 12px;
+    width: 300px;
+    height: 300px;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+}
+
+.card-content {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: white;
+}
+
+.card h2, .card p {
+    margin: 0;
+}
+
+h2 a{
+    text-decoration : none;
+    color: white;
+    font-size: 2rem;
+}
+
+.card p{
+    font-size: 1.2rem;
+}
+
+.card.kipon {
+    background: url('Assets/cars_3.jpg') no-repeat center/cover;
+}
+
+.card.robotrix {
+    background: url('Assets/plans_2.jpg') no-repeat center/cover;
+}
+
+.card.treasure-box {
+    background: url('Assets/yatches_2.avif') no-repeat center/cover; /* Replace with the correct path */
+}
+
+.card.explore {
+    background: url('Assets/map_3.jpg') no-repeat center/cover;
+}
+
+.card:hover {
+    transform: scale(1.1);
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    font-size: 1.1em;
+    color: white;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+    font-weight: 500;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: transparent;
+    border: 2px solid white;
+    border-radius: 20px;
+    min-width: 160px;
+    margin-left: -5px;
+    margin-top: 2px;
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
+    /* z-index: 1; */
+}
+
+.dropdown-content a {
+    color: white;
+    /* padding: 12px 16px; */
+    padding-top: 10px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    padding-right: 20px;
+    /* align-items: center; */
+    /* text-align: center; */
+}
+
+.dropdown .dropbtn{
+    width: 130px;
+    height: 50px;
+    background: transparent;
+    border: 2px solid white;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    color: white;
+    font-weight: 500;
+    /* margin-left: 40px; */
+    transition: 0.5s;
+}
+
+.dropdown .dropbtn:hover{
+    background-color: white;
+    color: black;
+}
+
+.dropdown-content a:last-child{
+    padding-bottom: 10px;
+}
+
+.dropdown-content a:hover {
+    background: transparent;
+    transform: none;
+    transition: none;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+
+/* .dropdown:hover .dropbtn {
+    background :transparent;
+} */
+
+.sidebar{
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 250px;
+    z-index: 999;
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    box-shadow: -10px 0 10px rgba(0, 0, 0, 0.1);
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    /* color: black; */
+    justify-content: flex-start;
+}
+
+.sidebar li{
+    width: 100%;
+    list-style-type: none;
+    padding: 5px;
+}
+
+.sidebar a{
+    width: 100%;
+}
+
+.last{
+    display: none;
+}
+
+@media(max-width: 800px){
+    .hideOnMobile{
+        display: none;
+    }
+    .last{
+        display: block;
+    }
+}
+
+@media(max-width: 400px){
+    .sidebar{
+        width: 100%;
+    }
+}
+
+ @media (max-width:1100px){
+            .cards-container {
+                gap: 20px;
+            }
+            .card {
+                width: 250px;
+                height: 250px;
+            }
+        }
+        @media (max-width:900px){
+            header{
+                padding: 20px 50px;
+            }
+            .navigation .btnLogin-popup{
+                width: 100px;
+                height: 40px;
+            }
+            .logo {
+                font-size: 1.5em;
+            }
+        }
+        @media (max-width:800px){
+            header{
+                padding: 10px 20px;
+            }
+            .fix-back-img{
+                height: 100vh;
+            }
+            .logo {
+                font-size: 1.2em;
+            }
+            .navigation {
+                display: none;
+            }
+            .dropdown {
+                display: none;
+            }
+            .cards-container{
+                gap: 15px;
+            }
+            .card {
+                width: 200px;
+                height: 200px;
+            }
+        }
+        @media (max-width:600px){
+            .sidebar{
+                display: flex;
+                width: 200px;
+            }
+            .navigation {
+                display: none;
+            }
+            .last{
+                display: flex;
+            }
+        }
+
+.contact-section {
+    text-align: center;
+    padding: 50px;
+    background-image: linear-gradient(135deg, rgb(228, 164, 228), pink, rgb(228, 164, 228));
+    margin-top: 60px;
+    margin-bottom: 40px;
+}
+
+.contact-section h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 40px;
+}
+
+.contact-info {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 100px;
+}
+
+.contact-item {
+    text-align: center;
+    max-width: 200px;
+}
+
+.contact-item i {
+    font-size: 60px;
+    color: #e74c3c;
+    margin-bottom: 20px;
+}
+
+.contact-item h3 {
+    font-size: 30px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.contact-item p {
+    font-size: 16px;
+    color: #666;
+    /* margin: 5px 0; */
+}

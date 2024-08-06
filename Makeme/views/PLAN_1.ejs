@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House1</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/styles/PLAN_1.css">
+</head>
+<body>
+
+    <section class="fix-back-img">
+        
+    </section>
+
+    <header>
+        <h2 class="logo">
+            Luxury Los Santos
+        </h2>
+
+        <nav class="navigation">
+            <a href="/" method="post" class="lines hideOnMobile">Home</a>
+            <!-- <a href="/cart" method="post" class="lines hideOnMobile">Cart</a> -->
+            <div class="dropdown hideOnMobile">
+                <button class="dropbtn">Category 
+                    <!-- <i class="fa fa-caret-down"></i> -->
+                </button>
+                <div class="dropdown-content">
+                    <a href="/plans" method="post">Plans</a>
+                    <a href="/cars" method="post">Cars</a>
+                    <a href="/penthouses" method="post">Penthouses</a>
+                    <a href="/yatches" method="post">Yachts</a>
+                </div>
+            </div>
+            <!-- <button class="btnLogin-popup hideOnMobile">Login</button>
+            <a href="/profile" method="post" class="lines hideOnMobile">Profile</a> -->
+
+            <a href="/cart" class="lines hideOnMobile">Cart</a>
+              <form action="/logout" method="post" style="display:inline;">
+                  <button type="submit" class="btnLogin-popup dropbtn hideOnMobile">Logout</button>
+              </form>
+              <a href="/profile" class="lines hideOnMobile">Profile</a>
+
+            <a href="#" class="last hideOnMobile" onclick=showSidebar()><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 0 448 512" width="26"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></a>
+
+
+            <ul class="sidebar">
+                <li onclick=hideSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 0 384 512" width="26"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg></a></li>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Service</a></li>
+                <li><a href="#">Contact</a></li>
+                <div class="dropdown">
+                    <button class="dropbtn">Category 
+                        <!-- <i class="fa fa-caret-down"></i> -->
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="#">Plans</a>
+                        <a href="#">Cars</a>
+                        <a href="#">Penthouses</a>
+                        <a href="#">Yachts</a>
+                    </div>
+                </div>
+                <button class="btnLogin-popup">Login</button>
+            </ul>            
+        </nav>
+    </header>
+
+    <script>
+        function checkLogin(url) {
+            fetch('/check-login')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.loggedIn) {
+                        window.location.href = url;
+                    } else {
+                        alert('You need to log in first.');
+                        window.location.href = '/';
+                    }
+                });
+        }
+    </script>
+
+    <section class="sec3-house">
+        <div class="property-listing">
+            <div class="header">
+                <div class="headname">
+                    <h1><%= plan.model %></h1>
+                    <p class="price">$ <%= plan.price.toLocaleString() %></p>
+                </div>
+                <!-- <p class="buy-btn">Buy</p> -->
+                <div class="headname1">
+                    <!-- <button class="buy-btn">Buy</button>
+                    <button class="buy-btn">Add Cart</button> -->
+                    <!-- <form action="/cart/purchase" method="post">
+                        <button class="buy-btn">Buy</button>
+                    </form> -->
+
+                    <form action="/buy/plan/<%= plan.id %>" method="post">
+                        <!-- Hidden field for item ID -->
+                        <input type="hidden" name="itemId" value="<%= plan.id %>">
+                
+                        <!-- <label for="buyerEmail">Buyer Email:</label> -->
+                        <input type="hidden" id="buyerEmail" name="buyerEmail" value="<%=userEmail%>"><br><br>
+
+                        <input type="hidden" id="name" name="name" value="<%= plan.model%>"><br><br>
+                
+                        <!-- <label for="sellerEmail">Seller Email:</label> -->
+                        <input type="hidden" id="sellerEmail" name="sellerEmail" value="<%= plan.seller_email %>"><br><br>
+                
+                        <!-- <label for="itemName">Item Name:</label> -->
+                        <input type="hidden" id="itemName" name="itemName" value="<%= "plan" %>" required><br><br>
+                
+                        <!-- <label for="itemPrice">Item Price:</label> -->
+                        <input type="hidden" id="itemPrice" name="itemPrice" value="<%= plan.price %>" required><br><br>
+                
+                        <button class="buy-btn" type="submit">Buy</button>
+                    </form>
+
+                    <form action="/cart/add" method="post">.
+                        <input type="hidden" name="name" value="<%= plan.model %>">
+                        
+                        <input type="hidden" name="price" value="<%= plan.price %>">
+                        <button type="submit" class="buy-btn">Add Cart</button>
+                    </form>
+                 </div>
+            </div>
+            <div class="image-container">
+                <img src="<%= plan.photos %>" alt="Plan Image">
+            </div>
+            <div class="property-details">
+                <div class="description">
+                    <h2>Plan Description</h2>
+                    <p><%= plan.description %></p>
+                </div>
+                <div class="property-info">
+    
+                    <div class="col1-property">
+
+                        <div class="flexsymbole">
+                            <p class="symbolehouse"><i class="fa-solid fa-route"></i></p>
+                            <p class="flexsymbole-text">Range</p>
+                            <p class="flexsymbole-num"><%= plan.range %></p>
+                        </div>
+
+                        <div class="flexsymbole">
+                            <p class="symbolehouse"><i class="fa-solid fa-gauge-high"></i></p>
+                            <p class="flexsymbole-text">Speed</p>
+                            <p class="flexsymbole-num"><%= plan.speed %></p>
+                        </div>
+
+                    </div>
+
+                    <div class="col2-property">
+
+                        <div class="flexsymbole">
+                            <p class="symbolehouse"><i class="fa-solid fa-chair"></i></p>
+                            <p class="flexsymbole-text">Capacity</p>
+                            <p class="flexsymbole-num"><%= plan.capacity %></p>
+                        </div>
+
+                        <div class="flexsymbole">
+                            <p class="symbolehouse"><i class="fa-regular fa-clock"></i></p>
+                            <p class="flexsymbole-text">Year</p>
+                            <p class="flexsymbole-num"><%= plan.year %></p>
+                        </div>
+
+                    </div>
+                    
+                    <div class="col3-property">
+
+                        <div class="flexsymbole">
+                            <p class="symbolehouse"><i class="fa-solid fa-fan"></i></p>
+                            <p class="flexsymbole-text">Thrust</p>
+                            <p class="flexsymbole-num"><%= plan.thrust %></p>
+                        </div>
+
+                        <div class="flexsymbole">
+                            <p class="symbolehouse"><i class="fa-solid fa-plane"></i></p>
+                            <p class="flexsymbole-text">Type</p>
+                            <p class="flexsymbole-num"><%= plan.type %></p>
+                        </div>
+
+                    </div>
+    
+                </div>
+    
+            </div>
+
+            <div class="realtor-info">
+                <h3><%= plan.seller_name %></h3>
+                <p class="span-relator">Realtor | 123.456.78</p>
+                <img src="/styles/Assets/logo_2.jpg" alt="Realtor Image">
+                <div class="contact-info">
+                    <h4>Email:</h4>
+                    <p><%= plan.seller_email %></p>
+                    <h4>Phone:</h4>
+                    <p><%= plan.seller_phone %></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<script>
+    const wrapper = document.querySelector('.wrapper');
+const loginLink = document.querySelector('.login-link');
+const registerLink = document.querySelector('.register-link');
+const btnPopup = document.querySelector('.btnLogin-popup');
+const iconClose = document.querySelector('.icon-close');
+
+
+registerLink.addEventListener('click', () => {
+wrapper.classList.add('active');
+});
+
+loginLink.addEventListener('click', () => {
+wrapper.classList.remove('active');
+});
+
+btnPopup.addEventListener('click', () => {
+wrapper.classList.add('active-popup');
+});
+
+iconClose.addEventListener('click', () => {
+wrapper.classList.remove('active-popup');
+});
+
+function showSidebar(){
+const sidebar = document.querySelector('.sidebar');
+sidebar.style.display = 'flex';
+}
+
+function hideSidebar(){
+const sidebar = document.querySelector('.sidebar');
+sidebar.style.display = 'none';
+}
+</script>
+</body>
+</html>

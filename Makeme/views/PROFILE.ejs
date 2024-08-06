@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Currency Store</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="styles/PROFILE.css">
+</head>
+<body>
+    <section class="fix-back-img"></section>
+    <section class="sec-login">
+        <h2 class="logo">Luxury Los Santos</h2>
+        <nav class="navigation">
+            <a href="/" class="lines hideOnMobile">Home</a>
+            <div class="dropdown hideOnMobile">
+                <button class="dropbtn">Category</button>
+                <div class="dropdown-content">
+                    <a href="/plans" class="hideOnMobile">Plans</a>
+                    <a href="/cars" class="hideOnMobile">Cars</a>
+                    <a href="/penthouses" class="hideOnMobile">Penthouses</a>
+                    <a href="/yatches" class="hideOnMobile">Yachts</a>
+                </div>
+            </div>
+            <% if (user) { %>
+                <a href="/cart" class="lines hideOnMobile">Cart</a>
+                <form action="/logout" method="post" style="display:inline;">
+                    <button type="submit" class="btnLogin-popup hideOnMobile">Logout</button>
+                </form>
+            <% } else { %>
+                <button class="btnLogin-popup hideOnMobile">Login / Signup</button>
+            <% } %>
+            <a href="/profile" class="lines hideOnMobile">Profile</a>
+        </nav>
+        <a href="#" class="last hideOnMobile" onclick="showSidebar()">
+            <svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 0 448 512" width="26">
+                <path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/>
+            </svg>
+        </a>
+        <ul class="sidebar">
+            <li onclick="hideSidebar()"><a href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 0 384 512" width="26">
+                    <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/>
+                </svg>
+            </a></li>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Service</a></li>
+            <li><a href="#">Contact</a></li>
+            <div class="dropdown">
+                <button class="dropbtn">Category</button>
+                <div class="dropdown-content">
+                    <a href="#">Plans</a>
+                    <a href="#">Cars</a>
+                    <a href="#">Penthouses</a>
+                    <a href="#">Yachts</a>
+                </div>
+            </div>
+            <button class="btnLogin-popup">Login</button>
+        </ul>
+    </section>
+
+    <section class="hero">
+        <div class="card">
+            <h1><%= user.username %></h1>
+            <p><%= user.email %></p>
+            <div class="roundimg">
+                <img src="<%= user.profile_picture %>" id="profile-pic">
+            </div>
+            <form id="profile-pic-form" enctype="multipart/form-data" action="/api/profile-pic" method="POST">
+                <input type="hidden" class="hideninput" name="id" value="<%= user.id %>"> <!-- Replace USER_ID_HERE with the actual user ID -->
+                <input type="file" id="photos" class="uploadimg" name="photos" required>
+                <button class="abc" type="submit">Submit</button>
+            </form>
+        </div>
+    </section>
+
+    <main>
+        <section class="currency-management">
+            <h2>Manage Your Currency</h2>
+            <div class="balance">
+                <p>Balance: $<%= user.balance %></p>
+            </div>
+            <div class="currency-actions">
+                <form id="addMoneyForm" style="display: block;">
+                    <input type="number" class="addmoney-text" id="addAmount" placeholder="Amount to add" required>
+                    <button type="submit" class="currency-btn">Add Money</button>
+                </form>
+                <form id="withdrawMoneyForm" style="display: block;">
+                    <input type="number" class="withdrawmoney-text" id="withdrawAmount" placeholder="Amount to withdraw" required>
+                    <button type="submit" class="currency-btn">Withdraw Money</button>
+                </form>
+            </div>
+        </section>
+        <section class="store">
+            <h2>Purchase History</h2>
+            <% for (let i = 0; i < x1.length; i++) { %>                
+                <div class="items">
+                    <div class="item">
+                        <div class="name-price">
+                        <span><%= x1[i].name %></span>
+                        <p><%= x1[i].item_name %></p>
+                        </div>
+                        <p>$<%= x1[i].item_price%></p>
+                    </div>
+                </div>
+            <% } %>
+        </section>
+    </main>
+
+    <section class="contact-section">
+        <div class="contact-info">
+            <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <h3>Call Us</h3>
+                <p>Free Calls</p>
+                <p>1-800-700-900</p>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <h3>Find Us</h3>
+                <p>Ahmedabad University</p>
+                <p>Ahmedabad, India</p>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <h3>Email Us</h3>
+                <p>Direct Email</p>
+                <p>mysantos@gmail.com</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+    // Handle Add Money
+    document.getElementById('addMoneyForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const amount = document.getElementById('addAmount').value;
+
+        const response = await fetch('/add-money', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ amount }),
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+            alert(data.message);
+            document.querySelector('.balance p').innerText = `Balance: $${data.newBalance}`;
+            document.getElementById('addAmount').value = ''; // Clear input
+        } else {
+            alert(data.message);
+        }
+    });
+
+    // Handle Withdraw Money
+    document.getElementById('withdrawMoneyForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const amount = parseInt(document.getElementById('withdrawAmount').value, 10);
+
+        const response = await fetch('/withdraw-money', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ amount }),
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+            alert(data.message);
+            document.querySelector('.balance p').innerText = `Balance: $${data.newBalance}`;
+            document.getElementById('withdrawAmount').value = ''; // Clear input
+        } else {
+            alert(data.message);
+        }
+    });
+    </script>
+</body>
+</html>
